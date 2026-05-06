@@ -37,12 +37,7 @@ public class AgendamentosDAO {
     try {
         Connection conn = Conexao.conectar();
 
-        String sql = "SELECT id_agendamento, data_hora, id_cliente, " +
-                     "id_barbeiro, id_servico, status, " +
-                     "nome AS nome_barbeiro, especialidade AS especialidade_barbeiro " +
-                     "FROM agendamentos a " +
-                     "INNER JOIN barbeiros b ON id_barbeiro = id_barbeiro " +
-                     "WHERE DATE(data_hora) = CURDATE()";
+        String sql = "SELECT agendamentos.id_agendamento, agendamentos.data_hora, agendamentos.id_barbeiro, agendamentos.status, barbeiros.nome AS nome_barbeiro, barbeiros.especialidade AS especialidade_barbeiro FROM agendamentos INNER JOIN barbeiros ON agendamentos.id_barbeiro = barbeiros.id_barbeiro WHERE DATE(agendamentos.data_hora) = CURDATE()";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
@@ -51,9 +46,7 @@ public class AgendamentosDAO {
             AgendamentosBean ag = new AgendamentosBean();
             ag.setId_agendamento(rs.getInt("id_agendamento"));
             ag.setData_hora(rs.getTimestamp("data_hora"));
-            ag.setId_cliente(rs.getInt("id_cliente"));
             ag.setId_barbeiro(rs.getInt("id_barbeiro"));
-            ag.setId_servico(rs.getInt("id_servico"));
             ag.setStatus(rs.getString("status"));
             ag.setNome_barbeiro(rs.getString("nome_barbeiro")); 
             ag.setEspecialidade_barbeiro(rs.getString("especialidade_barbeiro"));
