@@ -12,11 +12,13 @@ import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Aluno
  */
+@Service
 public class TokenService {
     
     @Value("${api.security.token.secret}")
