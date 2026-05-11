@@ -13,16 +13,20 @@ public class UsuarioBean {
     private String nome;
     private String email;
     private String senha;
+    private String token;
 
     public UsuarioBean() {
     }
 
-    public UsuarioBean(Integer id_usuario, String nome, String email, String senha) {
+    public UsuarioBean(Integer id_usuario, String nome, String email, String senha, String token) {
         this.id_usuario = id_usuario;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.token = token;
     }
+
+
 
     public Integer getId_usuario() {
         return id_usuario;
@@ -54,6 +58,14 @@ public class UsuarioBean {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
   

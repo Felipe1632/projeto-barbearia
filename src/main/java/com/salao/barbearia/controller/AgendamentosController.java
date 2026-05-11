@@ -6,12 +6,14 @@ package com.salao.barbearia.controller;
 
 import com.salao.barbearia.model.AgendamentosBean;
 import com.salao.barbearia.service.AgendamentosService;
+import com.salao.barbearia.service.TokenService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,11 +27,19 @@ public class AgendamentosController {
     
     @Autowired
     private AgendamentosService service;
+    
+        @Autowired
+    private TokenService tokenservice;
 
-    @PostMapping
-    public ResponseEntity<String> adicionar(@RequestBody AgendamentosBean agendamentos) {
-        service.adicionar(agendamentos);
-        return ResponseEntity.status(201).body("Agendamento criado com sucesso!");
+    @PostMapping("/adicionar")
+    public ResponseEntity<String> adicionar(@RequestHeader("Authorization") String auth, @RequestBody AgendamentosBean agendamentos) {
+        String token = auth.replace("Bearer ", "");
+        if(tokenservice.validarToken(token)) {
+            service.adicionar(agendamentos);
+            return ResponseEntity.status(201).body("Agendamento criado com sucesso!");
+        } else {
+            return null;
+        }
     }
 
     @GetMapping("/dia")

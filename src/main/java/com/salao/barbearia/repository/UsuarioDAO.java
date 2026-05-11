@@ -34,8 +34,9 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
-        public UsuarioBean logar(String email, String senha) {
+        public UsuarioBean logar(String email, String senha, String token) {
         UsuarioBean user = new UsuarioBean();
+        user.setToken(token);
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;

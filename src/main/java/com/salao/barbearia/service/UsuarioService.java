@@ -24,8 +24,8 @@ public class UsuarioService {
      }
     
 
-    public UsuarioBean logar(String email, String senha) {
-        UsuarioBean user = repository.logar(email, senha);
+    public UsuarioBean logar(String email, String senha, String token) {
+        UsuarioBean user = repository.logar(email, senha, token);
 
         if (user.getEmail() == null) {
             throw new RuntimeException("Email ou senha inválidos");

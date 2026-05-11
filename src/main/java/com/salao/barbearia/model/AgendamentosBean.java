@@ -17,21 +17,26 @@ public class AgendamentosBean {
     public Integer id_barbeiro;
     public Integer id_servico;
     public String status;
-    
+    public String token;
+            
     public String nome_barbeiro;
     public String especialidade_barbeiro;
 
     public AgendamentosBean() {
     }
 
-    public AgendamentosBean(Integer id_agendamento, Timestamp data_hora, Integer id_cliente, Integer id_barbeiro, Integer id_servico, String status) {
+    public AgendamentosBean(Integer id_agendamento, Timestamp data_hora, Integer id_cliente, Integer id_barbeiro, Integer id_servico, String status, String token, String nome_barbeiro, String especialidade_barbeiro) {
         this.id_agendamento = id_agendamento;
         this.data_hora = data_hora;
         this.id_cliente = id_cliente;
         this.id_barbeiro = id_barbeiro;
         this.id_servico = id_servico;
         this.status = status;
+        this.token = token;
+        this.nome_barbeiro = nome_barbeiro;
+        this.especialidade_barbeiro = especialidade_barbeiro;
     }
+
 
     public Integer getId_agendamento() {
         return id_agendamento;
@@ -91,6 +96,14 @@ public class AgendamentosBean {
     }
     public void setEspecialidade_barbeiro(String especialidade_barbeiro) {
         this.especialidade_barbeiro = especialidade_barbeiro;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
     
 }
